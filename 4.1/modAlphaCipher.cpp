@@ -1,8 +1,8 @@
 /** @file
- *  @author Федотов М.М.
+ *  @author Р¤РµРґРѕС‚РѕРІ Рњ.Рњ.
  *  @version 1.0
  *  @date 04.06.2021
- *  @brief файл с реализацией класса modAlphaCipher
+ *  @brief С„Р°Р№Р» СЃ СЂРµР°Р»РёР·Р°С†РёРµР№ РєР»Р°СЃСЃР° modAlphaCipher
  */
  
 #include <vector>
@@ -14,12 +14,12 @@
 
 using namespace std;
 
-std::wstring numAlpha = L"АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ";
+std::wstring numAlpha = L"РђР‘Р’Р“Р”Р•Р–Р—РР™РљР›РњРќРћРџР РЎРўРЈР¤РҐР¦Р§РЁР©Р¬Р«РЄР­Р®РЇ";
 std::map <wchar_t, int> alphaNum; 
 	/**
-     * @brief конструктор
-     * @param [in] skey ключ, по которому формируется зашифрованный алфавит.
-     * @throw cipher_error, исключение,если ключ не верный
+     * @brief РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+     * @param [in] skey РєР»СЋС‡, РїРѕ РєРѕС‚РѕСЂРѕРјСѓ С„РѕСЂРјРёСЂСѓРµС‚СЃСЏ Р·Р°С€РёС„СЂРѕРІР°РЅРЅС‹Р№ Р°Р»С„Р°РІРёС‚.
+     * @throw cipher_error, РёСЃРєР»СЋС‡РµРЅРёРµ,РµСЃР»Рё РєР»СЋС‡ РЅРµ РІРµСЂРЅС‹Р№
      */
 modAlphaCipher::modAlphaCipher(const std::wstring& skey) {
 	for (int i = 0; i<numAlpha.size(); i++) {
@@ -29,12 +29,12 @@ modAlphaCipher::modAlphaCipher(const std::wstring& skey) {
 
 }
 	/**
-     * @brief Зашифровывание
-     * @param [in] open_text Открытый текст. Не должен быть пустой строкой.
-     *                       Строчные символы автоматически преобразуются к прописным.
-     *                       Все символы, не являющиеся буквами  удаляются
-     * @return Зашифрованная строка
-     * @throw cipher_error, если текст пустой
+     * @brief Р—Р°С€РёС„СЂРѕРІС‹РІР°РЅРёРµ
+     * @param [in] open_text РћС‚РєСЂС‹С‚С‹Р№ С‚РµРєСЃС‚. РќРµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РїСѓСЃС‚РѕР№ СЃС‚СЂРѕРєРѕР№.
+     *                       РЎС‚СЂРѕС‡РЅС‹Рµ СЃРёРјРІРѕР»С‹ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїСЂРµРѕР±СЂР°Р·СѓСЋС‚СЃСЏ Рє РїСЂРѕРїРёСЃРЅС‹Рј.
+     *                       Р’СЃРµ СЃРёРјРІРѕР»С‹, РЅРµ СЏРІР»СЏСЋС‰РёРµСЃСЏ Р±СѓРєРІР°РјРё  СѓРґР°Р»СЏСЋС‚СЃСЏ
+     * @return Р—Р°С€РёС„СЂРѕРІР°РЅРЅР°СЏ СЃС‚СЂРѕРєР°
+     * @throw cipher_error, РµСЃР»Рё С‚РµРєСЃС‚ РїСѓСЃС‚РѕР№
      */
 std::wstring modAlphaCipher::encrypt(const std::wstring& open_text) {
 	std::vector<int> work = convert(getValidOpenText(open_text));
@@ -44,12 +44,12 @@ std::wstring modAlphaCipher::encrypt(const std::wstring& open_text) {
 	return convert(work);
 }
 	/**
-     * @brief Расшифрование
-     * @param [in] cipher_text Зашифрованный текст. Не должен быть пустой строкой.
-     *                       Строчные символы автоматически преобразуются к прописным.
-     *                       Все символы, не являющиеся буквами  удаляются
-     * @return Расшифрованная строка 
-     * @throw cipher_error, если текст пустой
+     * @brief Р Р°СЃС€РёС„СЂРѕРІР°РЅРёРµ
+     * @param [in] cipher_text Р—Р°С€РёС„СЂРѕРІР°РЅРЅС‹Р№ С‚РµРєСЃС‚. РќРµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РїСѓСЃС‚РѕР№ СЃС‚СЂРѕРєРѕР№.
+     *                       РЎС‚СЂРѕС‡РЅС‹Рµ СЃРёРјРІРѕР»С‹ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїСЂРµРѕР±СЂР°Р·СѓСЋС‚СЃСЏ Рє РїСЂРѕРїРёСЃРЅС‹Рј.
+     *                       Р’СЃРµ СЃРёРјРІРѕР»С‹, РЅРµ СЏРІР»СЏСЋС‰РёРµСЃСЏ Р±СѓРєРІР°РјРё  СѓРґР°Р»СЏСЋС‚СЃСЏ
+     * @return Р Р°СЃС€РёС„СЂРѕРІР°РЅРЅР°СЏ СЃС‚СЂРѕРєР° 
+     * @throw cipher_error, РµСЃР»Рё С‚РµРєСЃС‚ РїСѓСЃС‚РѕР№
      */
 std::wstring modAlphaCipher::decrypt(const std::wstring& cipher_text) {
 	std::vector<int> work = convert(getValidCipherText(cipher_text));
@@ -59,9 +59,9 @@ std::wstring modAlphaCipher::decrypt(const std::wstring& cipher_text) {
 	return convert(work);
 }
 	/**
-     * @brief Преобразование
-     * @param [in] str Открытый текст. 
-     * @return Вектор,состоящий из кодов символов в локальном алфавите.
+     * @brief РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ
+     * @param [in] str РћС‚РєСЂС‹С‚С‹Р№ С‚РµРєСЃС‚. 
+     * @return Р’РµРєС‚РѕСЂ,СЃРѕСЃС‚РѕСЏС‰РёР№ РёР· РєРѕРґРѕРІ СЃРёРјРІРѕР»РѕРІ РІ Р»РѕРєР°Р»СЊРЅРѕРј Р°Р»С„Р°РІРёС‚Рµ.
      */
 inline std::vector<int> modAlphaCipher::convert(const std::wstring& str) {
 	std::vector<int> result;
@@ -71,9 +71,9 @@ inline std::vector<int> modAlphaCipher::convert(const std::wstring& str) {
 	return result;
 }
  	/**
-     * @brief Преобразование
-     * @param [in] str Вектор кодов символов в локальном алфавите. 
-     * @return Строка по новому алфавиту.
+     * @brief РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ
+     * @param [in] str Р’РµРєС‚РѕСЂ РєРѕРґРѕРІ СЃРёРјРІРѕР»РѕРІ РІ Р»РѕРєР°Р»СЊРЅРѕРј Р°Р»С„Р°РІРёС‚Рµ. 
+     * @return РЎС‚СЂРѕРєР° РїРѕ РЅРѕРІРѕРјСѓ Р°Р»С„Р°РІРёС‚Сѓ.
      */
 inline std::wstring modAlphaCipher::convert(const std::vector<int>& v) {
 	std::wstring result;
@@ -83,10 +83,10 @@ inline std::wstring modAlphaCipher::convert(const std::vector<int>& v) {
 	return result;
 }
 	/**
-     * @brief Проверка ключа текста
-     * @param [in] in Ключ шифрования текста.
-     * @return Строка с ключем
-     * @throw cipher_error, если ключ слишком маленький, пустой или имеет некорректные символы. 
+     * @brief РџСЂРѕРІРµСЂРєР° РєР»СЋС‡Р° С‚РµРєСЃС‚Р°
+     * @param [in] in РљР»СЋС‡ С€РёС„СЂРѕРІР°РЅРёСЏ С‚РµРєСЃС‚Р°.
+     * @return РЎС‚СЂРѕРєР° СЃ РєР»СЋС‡РµРј
+     * @throw cipher_error, РµСЃР»Рё РєР»СЋС‡ СЃР»РёС€РєРѕРј РјР°Р»РµРЅСЊРєРёР№, РїСѓСЃС‚РѕР№ РёР»Рё РёРјРµРµС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ СЃРёРјРІРѕР»С‹. 
      */
 inline std::wstring modAlphaCipher::getValidKey(const std::wstring & in) {
 	if (in.empty()) throw cipher_error("Empty key");
@@ -95,9 +95,9 @@ inline std::wstring modAlphaCipher::getValidKey(const std::wstring & in) {
 	std::locale loc("ru_RU.UTF-8");
 	
 	for (wchar_t c : in) {
-		if (c >= L'А' && c <= L'Я') {
+		if (c >= L'Рђ' && c <= L'РЇ') {
 			output += c;
-		} else if (c >= L'а' && c <= L'я') {
+		} else if (c >= L'Р°' && c <= L'СЏ') {
 			output += toupper(c, loc);
 		} else {
 			throw cipher_error("Invalid key");
@@ -107,10 +107,10 @@ inline std::wstring modAlphaCipher::getValidKey(const std::wstring & in) {
 	return output;
 }
 	/**
-     * @brief Проверка Откротого текста
-     * @param [in] in Открытый текст.
-     * @return Строка открытого текста
-     * @throw cipher_error, если строка пустая или имеет некорректные символы. 
+     * @brief РџСЂРѕРІРµСЂРєР° РћС‚РєСЂРѕС‚РѕРіРѕ С‚РµРєСЃС‚Р°
+     * @param [in] in РћС‚РєСЂС‹С‚С‹Р№ С‚РµРєСЃС‚.
+     * @return РЎС‚СЂРѕРєР° РѕС‚РєСЂС‹С‚РѕРіРѕ С‚РµРєСЃС‚Р°
+     * @throw cipher_error, РµСЃР»Рё СЃС‚СЂРѕРєР° РїСѓСЃС‚Р°СЏ РёР»Рё РёРјРµРµС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ СЃРёРјРІРѕР»С‹. 
      */
 inline std::wstring modAlphaCipher::getValidOpenText(const std::wstring & in) {
 	if (in.empty()) throw cipher_error("Empty Open Text");
@@ -119,9 +119,9 @@ inline std::wstring modAlphaCipher::getValidOpenText(const std::wstring & in) {
 	std::locale loc("ru_RU.UTF-8");
 	
 	for (wchar_t c : in) {
-		if (c >= L'А' && c <= L'Я') {
+		if (c >= L'Рђ' && c <= L'РЇ') {
 			output += c;
-		} else if (c >= L'а' && c <= L'я') {
+		} else if (c >= L'Р°' && c <= L'СЏ') {
 			output += toupper(c, loc);
 		} else {
 			throw cipher_error("Invalid Open Text");
@@ -131,10 +131,10 @@ inline std::wstring modAlphaCipher::getValidOpenText(const std::wstring & in) {
 	return output;
 }
 	/**
-     * @brief Проверка зашифрованного текста
-     * @param [in] in Зашифрованный текст
-     * @return Зашифрованная строка
-     * @throw cipher_error, если текст пустой или в тексте содержатся другие символы, кроме букв алфавита
+     * @brief РџСЂРѕРІРµСЂРєР° Р·Р°С€РёС„СЂРѕРІР°РЅРЅРѕРіРѕ С‚РµРєСЃС‚Р°
+     * @param [in] in Р—Р°С€РёС„СЂРѕРІР°РЅРЅС‹Р№ С‚РµРєСЃС‚
+     * @return Р—Р°С€РёС„СЂРѕРІР°РЅРЅР°СЏ СЃС‚СЂРѕРєР°
+     * @throw cipher_error, РµСЃР»Рё С‚РµРєСЃС‚ РїСѓСЃС‚РѕР№ РёР»Рё РІ С‚РµРєСЃС‚Рµ СЃРѕРґРµСЂР¶Р°С‚СЃСЏ РґСЂСѓРіРёРµ СЃРёРјРІРѕР»С‹, РєСЂРѕРјРµ Р±СѓРєРІ Р°Р»С„Р°РІРёС‚Р°
      */
 inline std::wstring modAlphaCipher::getValidCipherText(const std::wstring & in){
 	if (in.empty()) throw cipher_error("Empty Cipher Text");
@@ -143,7 +143,7 @@ inline std::wstring modAlphaCipher::getValidCipherText(const std::wstring & in){
 	std::locale loc("ru_RU.UTF-8");
 	
 	for (wchar_t c : in) {
-		if (c > L'А' && c < L'Я') {
+		if (c > L'Рђ' && c < L'РЇ') {
 			output += c;
 		} else {
 			throw cipher_error("Invalid Open Text");
